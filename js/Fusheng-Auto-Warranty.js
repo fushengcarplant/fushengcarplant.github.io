@@ -28,35 +28,11 @@ function fadeIn(el, display) {
   })();
 };
 
-function goTop() {
-  const goTop = $('.goTop');
-  const scrollFunc = () => {
-    let y = window.scrollY;
-    if (y > 0) {
-      goTop.className = "goTop show";
-    } else {
-      goTop.className = "goTop hide";
-    }
-  };
-  window.addEventListener("scroll", scrollFunc);
-  const scrollToTop = () => {
-    const c = document.documentElement.scrollTop || document.body.scrollTop;
-    if (c > 0) {
-      window.requestAnimationFrame(scrollToTop);
-      window.scrollTo(0, c - c / 10);
-    }
-  };
-  goTop.onclick = function(e) {
-    e.preventDefault();
-    scrollToTop();
-  };
-}
-
 function preLoad() {
-  window.onload = function() {
+  window.addEventListener("load", () => {
     const preLoad = $('#preload');
     fadeOut(preLoad);
-  };
+  });
 }
 
 document.fonts.load('16px Noto Sans TC').then(function() {
@@ -66,7 +42,6 @@ document.fonts.load('16px Noto Sans TC').then(function() {
 
 document.addEventListener("DOMContentLoaded", function (event) {
   preLoad();
-  goTop();
 
   const
     i             = 0,
